@@ -1,7 +1,7 @@
 {
   "name": "serverless-glob-merge-yaml",
   "description": "A Serverless Framework plugin that lets you merge serverless.yml files using variables.",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "author": "Josh Kellendonk <josh@colloco.com>",
   "license": "MIT",
   "main": "index.js",
