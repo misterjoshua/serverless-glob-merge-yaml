@@ -1,4 +1,5 @@
 [![Build Status](https://img.shields.io/github/workflow/status/misterjoshua/serverless-glob-merge-yaml/CI)](https://github.com/misterjoshua/serverless-glob-merge-yaml/actions?query=workflow%3ACI)
+[![Coverage Status](https://coveralls.io/repos/github/misterjoshua/serverless-glob-merge-yaml/badge.svg?branch=master)](https://coveralls.io/github/misterjoshua/serverless-glob-merge-yaml?branch=master)
 
 # Serverless Framework Glob-Merge for YAML
 
