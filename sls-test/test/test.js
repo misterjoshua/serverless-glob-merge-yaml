@@ -48,6 +48,6 @@ it("should have all envs", () => {
 });
 
 it("should have all iamRoleStatements", () => {
-  expect(cfn.iamRoleStatementsCase).toHaveLength(1);
+  expect(cfn.iamRoleStatementsCase).toHaveLength(2);
   expect(cfn.iamRoleStatementsCase[0].Effect).toBe("Allow");
 });

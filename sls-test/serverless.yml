@@ -11,6 +11,6 @@ provider:
 resources:
   # Note: This isn't valid cloudformation, but it serves well to test variable resolution.
   resourcesCase: ${glob-merge-yaml:src/**/serverless.yml:resources}
-  functionsCase: ${glob-merge-yaml:src/serverless.yml:functions}
+  functionsCase: ${glob-merge-yaml:src/**/serverless.yml:functions}
   envCase: ${glob-merge-yaml:env/*+(after|default|${opt:stage,'dev'}).yml}
   iamRoleStatementsCase: ${glob-merge-yaml:src/**/serverless.yml:provider.iamRoleStatements}

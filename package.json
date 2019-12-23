@@ -32,6 +32,7 @@
     "temp": "^0.9.1"
   },
   "dependencies": {
+    "deepmerge": "^4.2.2",
     "glob": "^7.1.6",
     "lodash": "^4.17.15"
   },
