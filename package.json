@@ -23,6 +23,8 @@
     "pretty-quick": "^2.0.1"
   },
   "dependencies": {
+    "glob": "^7.1.6",
+    "lodash": "^4.17.15",
     "yaml-boost": "^1.9.19"
   }
 }
