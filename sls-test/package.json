@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "test": "run-s test:package test:jest",
-    "test:package": "serverless package",
+    "test:package": "serverless package --version",
     "test:jest": "jest"
   },
   "devDependencies": {

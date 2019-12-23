@@ -1,8 +1,8 @@
 [![Build Status](https://img.shields.io/github/workflow/status/misterjoshua/serverless-glob-merge-yaml/CI)](https://github.com/misterjoshua/serverless-glob-merge-yaml/actions?query=workflow%3ACI)
 
-# Serverless Framework Glob Merger for Yaml
+# Serverless Framework Glob-Merge for YAML
 
-This is a Serverless Framework plugin that lets you use variables to deep-merge YAML files that match globbing formats (`**/serverless.yml`) and select only the data you want from the merged data. This plugin is primarily for splitting `serverless.yml` into smaller chunks without needing to create separate Serverless Framework projects.
+This is a Serverless Framework plugin that lets you merge `serverless.yml` files using Serverless Framework variables from YAML. You write a variable that contains a path glob (i.e., `**/serverless.yml`) to merge YAML files and an optional subpath to select only the data you want from the merged data. This plugin is primarily for splitting `serverless.yml` into smaller chunks without needing to create separate Serverless Framework projects.
 
 ## Installation
 
@@ -10,13 +10,6 @@ This is a Serverless Framework plugin that lets you use variables to deep-merge 
 - Add `serverless-glob-merge-yaml` to your `serverless.yml` plugins section.
 
 ## Example `serverless.yml`
-
-This example `serverless.yml` does the following:
-
-- Merges all `iamRoleStatements` in files named `serverless.yml` in any directory under `src/`.
-- Merges all `environment` variables in files named `serverless.yml` in any directory under `src/`.
-- Merges all `functions` from files named `functions.yml` in any directory underh `src/`.
-- Merges all `resources` from files named `resources.yml` in any directory under `src/`
 
 **serverless.yml**
 
@@ -30,17 +23,49 @@ plugins:
 provider:
   name: aws
   runtime: nodejs12.x
+  # Change the variable syntax to allow *, +, and | in the variables.
+  variableSyntax: "\\${([ *+|~:a-zA-Z0-9._@\\'\",\\-\\/\\(\\)]+?)}"
+
   iamRoleStatements:
+    # Look for serverless.yml in src/ and subdirectories and get the
+    # iamRoleStatements.
     ${glob-merge-yaml:src/**/serverless.yml:provider.iamRoleStatements}
+
   environment:
-    ${glob-merge-yaml:src/**/serverless.yml:provider.environment}
+    # Look in env/ for defaults and override based on stage yaml. They are
+    # merged in lexicographical order.
+    #
+    # For example, assume you have a files named:
+    #  *  env/0default.yml
+    #  *  env/1dev.yml
+    #  *  env/1prod.yml
+    #
+    # In the dev stage, this will merge in this order:
+    #  1) env/0default.yml
+    #  2) env/1dev.yml
+    #
+    # In the prod stage, this will merge in this order:
+    #  1) env/0default.yml
+    #  2) env/1prod.yml
+    #
+    # See: https://github.com/isaacs/node-glob#glob-primer
+    ${glob-merge-yaml:env/*+(default|${opt:stage,'dev'}).yml}
 
 functions:
-  ${glob-merge-yaml:src/**/functions.yml:functions}
+  # Merge all functions.yml in src/
+  ${glob-merge-yaml:src/**/functions.yml}
 
 resources:
-  ${glob-merge-yaml:src/**/resources.yml:resources}
+  # Merge all resources.yml in src/
+  ${glob-merge-yaml:src/**/resources.yml}
 ```
+
+This example `serverless.yml` does the following:
+
+- Merges all `iamRoleStatements` in files named `serverless.yml` in any directory under `src/`
+- Merges all `environment` variables in files named `serverless.yml` in any directory under `src/`
+- Merges all `functions` from files named `functions.yml` in any directory underh `src/`
+- Merges everything from all `resources.yml` files in any directory under `src/`
 
 ## Variable Syntax
 

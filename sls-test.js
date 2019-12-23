@@ -5,7 +5,7 @@ const temp = require("temp");
 const exec = require("child_process").execSync;
 
 // Track and delete temp files.
-temp.track();
+// temp.track();
 
 console.log("Creating temporary directory");
 const tempDir = temp.mkdirSync("sls-test");

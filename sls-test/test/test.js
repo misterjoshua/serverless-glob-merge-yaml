@@ -41,8 +41,10 @@ it("should have all functions", () => {
 });
 
 it("should have all envs", () => {
+  console.log(cfn.envCase);
   expect(cfn.envCase.FOO).toBe("BAR");
   expect(cfn.envCase.BAZ).toBe("XYZ");
+  expect(cfn.envCase.ORDER).toBe("RIGHT");
 });
 
 it("should have all iamRoleStatements", () => {
