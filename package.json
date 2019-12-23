@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "author": "Josh Kellendonk <josh@colloco.com>",
   "license": "MIT",
+  "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "prettier": "pretty-quick --staged",
     "hook:pre-commit": "run-s prettier test"
   },
