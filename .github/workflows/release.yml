@@ -2,7 +2,8 @@ name: Release
 
 on:
   push:
-    branches: [publish]
+    tags:
+      - v*
   release:
     types: [created]
 
