@@ -60,13 +60,6 @@ resources:
   ${glob-merge-yaml:src/**/resources.yml}
 ```
 
-This example `serverless.yml` does the following:
-
-- Merges all `iamRoleStatements` in files named `serverless.yml` in any directory under `src/`
-- Merges all `environment` variables in files named `serverless.yml` in any directory under `src/`
-- Merges all `functions` from files named `functions.yml` in any directory underh `src/`
-- Merges everything from all `resources.yml` files in any directory under `src/`
-
 ## Variable Syntax
 
 The syntax of the variable expression is broken down like this: `${glob-merge-yaml:PATH_GLOB:SUB_PATH}`
