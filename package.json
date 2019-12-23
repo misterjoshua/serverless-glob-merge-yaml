@@ -1,7 +1,6 @@
 {
   "name": "glob-merge-yaml",
   "version": "0.1.0",
-  "main": "index.js",
   "author": "Josh Kellendonk <josh@colloco.com>",
   "license": "MIT",
   "scripts": {
@@ -21,5 +20,7 @@
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "yaml-boost": "^1.9.19"
+  }
 }
