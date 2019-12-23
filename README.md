@@ -2,9 +2,12 @@
 
 # Serverless Framework Glob Merger for Yaml
 
-This is a Serverless Framework plugin that lets you use variables to deep-merge YAML files that match globbing format (`**/serverless.yml`) and select only the data you want from the merged data structure. This plugin is primarily for splitting your `serverless.yml` into smaller chunks without needing to create separate Serverless Framework projects.
+This is a Serverless Framework plugin that lets you use variables to deep-merge YAML files that match globbing formats (`**/serverless.yml`) and select only the data you want from the merged data. This plugin is primarily for splitting `serverless.yml` into smaller chunks without needing to create separate Serverless Framework projects.
 
-Install the plugin by typing `npm install --only=dev serverless-glob-merge-yaml` and adding `serverless-glob-merge-yaml` to your `serverless.yml` plugins section.
+## Installation
+
+- Install the package by typing `npm install --only=dev serverless-glob-merge-yaml`.
+- Add `serverless-glob-merge-yaml` to your `serverless.yml` plugins section.
 
 ## Example `serverless.yml`
 
