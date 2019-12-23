@@ -19,10 +19,10 @@ class ServerlessPlugin {
     this.variableResolvers = {
       "glob-merge-yaml": {
         resolver: globMergeYamlVariableResolver(serverlessLoader(serverless))
-      },
-      "glob-merge-yaml-boost": {
-        resolver: globMergeYamlVariableResolver(yamlBoostLoader)
       }
+      // "glob-merge-yaml-boost": {
+      //   resolver: globMergeYamlVariableResolver(yamlBoostLoader)
+      // }
     };
   }
 }
