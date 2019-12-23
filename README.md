@@ -2,11 +2,20 @@
 
 # Serverless Framework Glob Merger for Yaml
 
-This is a Serverless Framework plugin that lets you merge yaml from multiple yaml files with so that you can split your `serverless.yml` files into smaller, more portable chunks.
+This is a Serverless Framework plugin that lets you use variables to deep-merge YAML files that match globbing format (`**/serverless.yml`) and select only the data you want from the merged data structure. This plugin is primarily for splitting your `serverless.yml` into smaller chunks without needing to create separate Serverless Framework projects.
+
+Install the plugin by typing `npm install --only=dev serverless-glob-merge-yaml` and adding `serverless-glob-merge-yaml` to your `serverless.yml` plugins section.
 
 ## Example `serverless.yml`
 
-Install the plugin first by typing `npm install --only=dev serverless-glob-merge-yaml`.
+This example `serverless.yml` does the following:
+
+- Merges all `iamRoleStatements` in files named `serverless.yml` in any directory under `src/`.
+- Merges all `environment` variables in files named `serverless.yml` in any directory under `src/`.
+- Merges all `functions` from files named `functions.yml` in any directory underh `src/`.
+- Merges all `resources` from files named `resources.yml` in any directory under `src/`
+
+**serverless.yml**
 
 ```
 service:
@@ -38,3 +47,7 @@ The syntax of the variable expression is broken down like this: `${glob-merge-ya
 - `glob-merge-yaml` - This is the plugin's variable prefix.
 - `PATH_GLOB` - Replace this with a path glob. The glob syntax is based on the [`glob` package](https://github.com/isaacs/node-glob#readme)
 - `SUB_PATH` - This is an object path that can be used to traverse the merged data structure. You can omit the subpath to return the merged data structure.
+
+## Recursion
+
+The YAML files loaded through `glob-merge-yaml` variable resolution can contain additional `glob-merge-yaml` statements, so be careful not to create circular dependencies. :)
