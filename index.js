@@ -2,13 +2,13 @@
 
 const globMergeYamlVariableResolver = require("./src/globMergeYamlVariableResolver")
   .globMergeYamlVariableResolver;
-const yamlBoost = require("yaml-boost");
+// const yamlBoost = require("yaml-boost");
 
 // Use the serverless yaml parser.
 const serverlessLoader = serverless => async path =>
   await serverless.yamlParser.parse(path);
 // Use the yaml-boost yaml parser.
-const yamlBoostLoader = async path => yamlBoost.load(path);
+// const yamlBoostLoader = async path => yamlBoost.load(path);
 
 // Serverless Framework plugin.
 class ServerlessPlugin {
