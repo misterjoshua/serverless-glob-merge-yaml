@@ -1,6 +1,6 @@
 {
   "name": "serverless-glob-merge-yaml",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Josh Kellendonk <josh@colloco.com>",
   "license": "MIT",
   "main": "index.js",
