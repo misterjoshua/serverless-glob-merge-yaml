@@ -1,0 +1,8 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "license": "MIT",
+  "devDependencies": {
+    "glob-merge-yaml": "file:../"
+  }
+}

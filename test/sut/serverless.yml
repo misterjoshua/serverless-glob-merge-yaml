@@ -1,0 +1,13 @@
+service:
+  name: test
+
+plugins:
+  - glob-merge-yaml
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+functions:
+  function:
+    handler: handler.handler
