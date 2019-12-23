@@ -1,0 +1,15 @@
+service:
+  name: test
+
+plugins:
+  - serverless-glob-merge-yaml
+
+provider:
+  name: aws
+
+resources:
+  # Note: This isn't valid cloudformation, but it serves well to test variable resolution.
+  resourcesCase: ${glob-merge-yaml:src/**/serverless.yml:resources}
+  functionsCase: ${glob-merge-yaml:src/serverless.yml:functions}
+  envCase: ${glob-merge-yaml:env.yaml:}
+  iamRoleStatementsCase: ${glob-merge-yaml:src/**/serverless.yml:provider.iamRoleStatements}

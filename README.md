@@ -6,7 +6,7 @@ This is a Serverless Framework plugin that lets you use variables to deep-merge 
 
 ## Installation
 
-- Install the package by typing `npm install --only=dev serverless-glob-merge-yaml`.
+- Install the package by typing `npm i --save-dev serverless-glob-merge-yaml`.
 - Add `serverless-glob-merge-yaml` to your `serverless.yml` plugins section.
 
 ## Example `serverless.yml`
@@ -39,8 +39,7 @@ functions:
   ${glob-merge-yaml:src/**/functions.yml:functions}
 
 resources:
-  Resources:
-    ${glob-merge-yaml:src/**/resources.yml:resources}
+  ${glob-merge-yaml:src/**/resources.yml:resources}
 ```
 
 ## Variable Syntax

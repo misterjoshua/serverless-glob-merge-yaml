@@ -1,0 +1,12 @@
+provider:
+  iamRoleStatements:
+    - Effect: Allow
+      Action: ["sqs:*"]
+      Resource:
+        - !GetAtt TestQueue.Arn
+
+functions: ${glob-merge-yaml:src/mod*/functions.yml}
+
+resources:
+  TestQueue:
+    Type: AWS::SQS::Queue

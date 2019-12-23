@@ -1,0 +1,2 @@
+mod3fn:
+  handler: src/mod3/handler.handler
