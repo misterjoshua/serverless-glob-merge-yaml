@@ -14,10 +14,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Build and test
-        run: |
-          npm i
-          npm build
+      - run: npm ci
+      - run: npm run build
         env:
           CI: true
 
@@ -31,11 +29,8 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org/
       - name: Build and test
-        run: |
-          npm i
-          npm build
-        env:
-          CI: true
+      - run: npm ci
+      - run: npm run build
       - run: yarn publish --registry https://registry.npmjs.org/ --
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
@@ -52,8 +47,8 @@ jobs:
           scope: "@misterjoshua"
       - name: Build and test
         run: |
-          npm i
-          npm build
+          npm ci
+          npm run build
         env:
           CI: true
       - run: npm publish
