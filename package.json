@@ -35,6 +35,10 @@
   },
   "module": "dist/mylib.esm.js",
   "devDependencies": {
+    "@types/deepmerge": "^2.2.0",
+    "@types/jest": "^24.0.24",
+    "@types/lodash": "^4.14.149",
+    "@types/serverless": "^1.18.4",
     "copy-dir": "^1.2.0",
     "husky": "^3.1.0",
     "npm-run-all": "^4.1.5",
@@ -44,10 +48,6 @@
     "typescript": "^3.7.4"
   },
   "dependencies": {
-    "@types/deepmerge": "^2.2.0",
-    "@types/jest": "^24.0.24",
-    "@types/lodash": "^4.14.149",
-    "@types/serverless": "^1.18.4",
     "glob": "^7.1.6",
     "lodash": "^4.17.15"
   }
