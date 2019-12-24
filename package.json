@@ -15,12 +15,12 @@
   ],
   "scripts": {
     "start": "tsdx watch",
-    "build": "tsdx build --format=cjs --target=node",
-    "test": "run-s test:tsdx test:sls-test",
+    "build": "CI=1 run-s build:tsdx test test:sls-test",
+    "build:tsdx": "tsdx build --format=cjs --target=node",
+    "test": "tsdx test --coverage",
     "test:sls-test": "node sls-test",
-    "test:tsdx": "tsdx test --coverage",
     "lint": "tsdx lint",
-    "prepare": "tsdx build --format=cjs --target=node",
+    "prepare": "run-s build",
     "pre-commit": "run-s lint test"
   },
   "peerDependencies": {},
@@ -50,7 +50,6 @@
   "dependencies": {
     "@types/deepmerge": "^2.2.0",
     "@types/lodash": "^4.14.149",
-    "deepmerge": "^4.2.2",
     "glob": "^7.1.6",
     "lodash": "^4.17.15"
   }
