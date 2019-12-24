@@ -4,42 +4,54 @@
   "version": "0.4.1",
   "author": "Josh Kellendonk <josh@colloco.com>",
   "license": "MIT",
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/misterjoshua/serverless-glob-merge-yaml"
   },
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "run-s test",
-    "test": "run-s test:jest test:sls-test",
-    "test:jest": "jest --coverage",
-    "test:sls-test": "node sls-test.js",
-    "prettier": "pretty-quick --staged",
-    "hook:pre-commit": "run-s prettier test:jest"
+    "start": "tsdx watch",
+    "build": "tsdx build --format=cjs --target=node",
+    "test": "run-s test:tsdx test:sls-test",
+    "test:sls-test": "node sls-test",
+    "test:tsdx": "tsdx test --coverage",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build --format=cjs --target=node",
+    "pre-commit": "run-s lint test"
   },
+  "peerDependencies": {},
   "husky": {
     "hooks": {
-      "pre-commit": "run-s hook:pre-commit"
+      "pre-commit": "run-s lint"
     }
   },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "module": "dist/mylib.esm.js",
   "devDependencies": {
+    "@types/jest": "^24.0.24",
+    "@types/serverless": "^1.18.4",
     "copy-dir": "^1.2.0",
     "husky": "^3.1.0",
-    "jest": "^24.9.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^1.19.1",
-    "pretty-quick": "^2.0.1",
-    "temp": "^0.9.1"
+    "temp": "^0.9.1",
+    "tsdx": "^0.12.0",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.4"
   },
   "dependencies": {
+    "@types/deepmerge": "^2.2.0",
+    "@types/lodash": "^4.14.149",
     "deepmerge": "^4.2.2",
     "glob": "^7.1.6",
     "lodash": "^4.17.15"
-  },
-  "jest": {
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/sls-test/"
-    ]
   }
 }

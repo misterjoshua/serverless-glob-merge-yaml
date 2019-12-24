@@ -1,7 +1,0 @@
-/sls-test*
-/node_modules
-/coverage
-
-.*
-package-lock.json
-*.test.*

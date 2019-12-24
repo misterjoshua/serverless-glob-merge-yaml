@@ -1,74 +1,27 @@
-[![Build Status](https://img.shields.io/github/workflow/status/misterjoshua/serverless-glob-merge-yaml/CI)](https://github.com/misterjoshua/serverless-glob-merge-yaml/actions?query=workflow%3ACI)
-[![Coverage Status](https://coveralls.io/repos/github/misterjoshua/serverless-glob-merge-yaml/badge.svg?branch=master)](https://coveralls.io/github/misterjoshua/serverless-glob-merge-yaml?branch=master)
+# TSDX Bootstrap
 
-# Serverless Framework Glob-Merge for YAML
+This project was bootstrapped with [TSDX](https://github.com/jaredpalmer/tsdx).
 
-This is a Serverless Framework plugin that lets you merge `serverless.yml` files using Serverless Framework variables from YAML. You write a variable that contains a path glob (i.e., `**/serverless.yml`) to merge YAML files and an optional subpath to select only the data you want from the merged data. This plugin is primarily for splitting `serverless.yml` into smaller chunks without needing to create separate Serverless Framework projects.
+## Local Development
 
-## Installation
+Below is a list of commands you will probably find useful.
 
-- Install the package by typing `npm i --save-dev serverless-glob-merge-yaml`.
-- Add `serverless-glob-merge-yaml` to your `serverless.yml` plugins section.
+### `npm start` or `yarn start`
 
-## Example `serverless.yml`
+Runs the project in development/watch mode. Your project will be rebuilt upon changes. TSDX has a special logger for you convenience. Error messages are pretty printed and formatted for compatibility VS Code's Problems tab.
 
-**serverless.yml**
+<img src="https://user-images.githubusercontent.com/4060187/52168303-574d3a00-26f6-11e9-9f3b-71dbec9ebfcb.gif" width="600" />
 
-```
-service:
-  name: test
+Your library will be rebuilt if you make edits.
 
-plugins:
-  - serverless-glob-merge-yaml
+### `npm run build` or `yarn build`
 
-provider:
-  name: aws
-  runtime: nodejs12.x
-  # Change the variable syntax to allow *, +, and | in the variables.
-  variableSyntax: "\\${([ *+|~:a-zA-Z0-9._@\\'\",\\-\\/\\(\\)]+?)}"
+Bundles the package to the `dist` folder.
+The package is optimized and bundled with Rollup into multiple formats (CommonJS, UMD, and ES Module).
 
-  iamRoleStatements:
-    # Look for serverless.yml in src/ and subdirectories and get the
-    # iamRoleStatements.
-    ${glob-merge-yaml:src/**/serverless.yml:provider.iamRoleStatements}
+<img src="https://user-images.githubusercontent.com/4060187/52168322-a98e5b00-26f6-11e9-8cf6-222d716b75ef.gif" width="600" />
 
-  environment:
-    # Look in env/ for defaults and override based on stage yaml. They are
-    # merged in lexicographical order.
-    #
-    # For example, assume you have a files named:
-    #  *  env/0default.yml
-    #  *  env/1dev.yml
-    #  *  env/1prod.yml
-    #
-    # In the dev stage, this will merge in this order:
-    #  1) env/0default.yml
-    #  2) env/1dev.yml
-    #
-    # In the prod stage, this will merge in this order:
-    #  1) env/0default.yml
-    #  2) env/1prod.yml
-    #
-    # See: https://github.com/isaacs/node-glob#glob-primer
-    ${glob-merge-yaml:env/*+(default|${opt:stage,'dev'}).yml}
+### `npm test` or `yarn test`
 
-functions:
-  # Merge all functions.yml in src/
-  ${glob-merge-yaml:src/**/functions.yml}
-
-resources:
-  # Merge all resources.yml in src/
-  ${glob-merge-yaml:src/**/resources.yml}
-```
-
-## Variable Syntax
-
-The syntax of the variable expression is broken down like this: `${glob-merge-yaml:PATH_GLOB:SUB_PATH}`
-
-- `glob-merge-yaml` - This is the plugin's variable prefix.
-- `PATH_GLOB` - Replace this with a path glob. The glob syntax is based on the [`glob` package](https://github.com/isaacs/node-glob#readme)
-- `SUB_PATH` - This is an object path that can be used to traverse the merged data structure. You can omit the subpath to return the merged data structure.
-
-## Recursion
-
-The YAML files loaded through `glob-merge-yaml` variable resolution can contain additional `glob-merge-yaml` statements, so be careful not to create circular dependencies. :)
+Runs the test watcher (Jest) in an interactive mode.
+By default, runs tests related to files changed since the last commit.
