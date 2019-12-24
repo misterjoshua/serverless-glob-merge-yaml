@@ -15,18 +15,16 @@
   ],
   "scripts": {
     "start": "tsdx watch",
-    "build": "CI=1 run-s build:tsdx test test:sls-test",
-    "build:tsdx": "tsdx build --format=cjs --target=node",
+    "build": "CI=1 tsdx build --format=cjs --target=node",
     "test": "tsdx test --coverage",
+    "test:full": "CI=1 run-s test test:sls-test",
     "test:sls-test": "node sls-test",
-    "lint": "tsdx lint",
-    "prepare": "run-s build",
-    "pre-commit": "run-s lint test"
+    "lint": "tsdx lint"
   },
   "peerDependencies": {},
   "husky": {
     "hooks": {
-      "pre-commit": "run-s lint"
+      "pre-commit": "CI=1 run-s lint test"
     }
   },
   "prettier": {
@@ -37,8 +35,6 @@
   },
   "module": "dist/mylib.esm.js",
   "devDependencies": {
-    "@types/jest": "^24.0.24",
-    "@types/serverless": "^1.18.4",
     "copy-dir": "^1.2.0",
     "husky": "^3.1.0",
     "npm-run-all": "^4.1.5",
@@ -49,7 +45,9 @@
   },
   "dependencies": {
     "@types/deepmerge": "^2.2.0",
+    "@types/jest": "^24.0.24",
     "@types/lodash": "^4.14.149",
+    "@types/serverless": "^1.18.4",
     "glob": "^7.1.6",
     "lodash": "^4.17.15"
   }
